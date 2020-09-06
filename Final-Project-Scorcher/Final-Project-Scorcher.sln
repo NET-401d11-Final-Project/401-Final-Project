@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Final-Project-Scorcher.Android", "Final-Project-Scorcher\Final-Project-Scorcher.Android\Final-Project-Scorcher.Android.csproj", "{0F86474A-595B-4065-BF8C-CB4A4F013BBC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Final-Project-Scorcher", "Final-Project-Scorcher\Final-Project-Scorcher\Final-Project-Scorcher.csproj", "{BFD5AF40-B47E-48A6-AA5E-8274EB0CFF82}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0F86474A-595B-4065-BF8C-CB4A4F013BBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F86474A-595B-4065-BF8C-CB4A4F013BBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F86474A-595B-4065-BF8C-CB4A4F013BBC}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{0F86474A-595B-4065-BF8C-CB4A4F013BBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F86474A-595B-4065-BF8C-CB4A4F013BBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F86474A-595B-4065-BF8C-CB4A4F013BBC}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{BFD5AF40-B47E-48A6-AA5E-8274EB0CFF82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFD5AF40-B47E-48A6-AA5E-8274EB0CFF82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFD5AF40-B47E-48A6-AA5E-8274EB0CFF82}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{BFD5AF40-B47E-48A6-AA5E-8274EB0CFF82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFD5AF40-B47E-48A6-AA5E-8274EB0CFF82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFD5AF40-B47E-48A6-AA5E-8274EB0CFF82}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8FB1CDCD-8B8F-43AD-A3FD-ED283D8609AC}
+	EndGlobalSection
+EndGlobal
