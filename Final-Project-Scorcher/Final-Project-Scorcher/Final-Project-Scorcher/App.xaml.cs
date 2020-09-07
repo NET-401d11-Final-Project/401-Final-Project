@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Final_Project_Scorcher.Views;
 
 namespace Final_Project_Scorcher
 {
@@ -10,7 +11,7 @@ namespace Final_Project_Scorcher
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new Main();
         }
 
         protected override void OnStart()
