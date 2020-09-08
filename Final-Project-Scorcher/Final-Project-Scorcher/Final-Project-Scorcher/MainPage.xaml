@@ -3,23 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Final_Project_Scorcher.MainPage">
 
-    <StackLayout>
-        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Label Text="Welcome to Xamarin.Forms!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-        </Frame>
-        <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
-        <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
-        <Label FontSize="16" Padding="30,24,30,0">
-            <Label.FormattedText>
-                <FormattedString>
-                    
-                    <FormattedString.Spans>
-                        <Span Text="Learn more at "/>
-                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
-                    </FormattedString.Spans>
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
-    </StackLayout>
+    <StackLayout Margin="40">
+        <Label Text="Restaraunt information" FontSize="20" FontAttributes="Bold" TextColor="#1690F4" VerticalOptions="Center" HorizontalOptions="Center" Margin="20"/>
+        <Label Text="AvgLevel"/>
+        <Entry x:Name="AvgLevel"  Keyboard="Numeric" Placeholder="Your name here" />
 
-</ContentPage>
+
+        <Button Text="Add contact" HorizontalOptions="FillAndExpand" BackgroundColor="#1690F4" TextColor="White" Margin="0,20" Clicked="OnButtonClicked" />
+        <ListView x:Name="ContactListView"
+                      ItemsSource="{Binding Contacts}"
+                      BackgroundColor="#F0ECEC"
+                      SelectionMode="None" 
+                      Footer="">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" Margin="0,10">
+                            <Label  Text="{Binding AvgLevel}"      FontSize="15" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>         

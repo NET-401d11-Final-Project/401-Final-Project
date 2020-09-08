@@ -8,23 +8,17 @@ namespace Final_Project_Scorcher
 {
     public partial class App : Application
     {
-        static ScorcherDatabase database;
+        public static ScorcherDatabase database;
 
-        public static ScorcherDatabase Database
-        {
-            get
-            {
-                if (database == null)
-                {
-                    database = new ScorcherDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Notes.db3"));
-                }
-                return database;
-            }
-        }
+
         public App()
         {
             InitializeComponent();
-
+            if (database == null)
+            {
+                database = new ScorcherDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Notes.db3"));
+            }
+            
             MainPage = new MainPage();
         }
 

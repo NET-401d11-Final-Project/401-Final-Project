@@ -30,7 +30,7 @@ namespace Final_Project_Scorcher.Data
                 return false;
             }
         }
-        public async Task<List<Restaraunt>> GetAllRestaraunts(int id)
+        public async Task<List<Restaraunt>> GetAllRestaraunts()
         {
             return await _database.Table<Restaraunt>().ToListAsync();
         }
@@ -97,12 +97,12 @@ namespace Final_Project_Scorcher.Data
             return restarauntDish;
         }
 
-        public async Task<List<Restaraunt>> GetAllDishes(int id)
+        public async Task<List<Dish>> GetAllDishes()
         {
-            return await _database.Table<Restaraunt>().ToListAsync();
+            return await _database.Table<Dish>().ToListAsync();
         }
 
-        public async Task<Dish> CreateDatabase(Dish dish)
+        public async Task<Dish> CreateDish(Dish dish)
         {
             if (dish.Id != 0)
             {

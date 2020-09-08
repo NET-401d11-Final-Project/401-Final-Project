@@ -16,8 +16,5 @@ namespace Final_Project_Scorcher.Models
         public decimal RestarauntDishOffset { get; set; }
         public int TotalVotes { get; set; }
         public decimal AvgLevel { get; set; }
-
-
-
     }
 }

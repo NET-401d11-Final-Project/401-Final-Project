@@ -13,9 +13,5 @@ namespace Final_Project_Scorcher.Models
         public decimal RestarauntOffset { get; set; }
         public int LevelMin { get; set; }
         public int LevelMax { get; set; }
-        public List<RestarauntDish> RestarauntDishes { get; set; }
-
-
-
     }
 }
