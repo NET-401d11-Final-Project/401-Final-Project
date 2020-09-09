@@ -41,8 +41,7 @@ namespace Final_Project_Scorcher.Views
 
         private async Task<IList<Yelp.Api.Models.BusinessResponse>> SearchYelpNoTerm()
         {
-            Location location = await ScorcherLocation.GetDeviceLocation();
-            return await YelpAPIAccess.GetYelpDataAsync(location, "");
+            return await SearchYelp("");
         }
 
         private async Task<IList<Yelp.Api.Models.BusinessResponse>> SearchYelp(string search)
