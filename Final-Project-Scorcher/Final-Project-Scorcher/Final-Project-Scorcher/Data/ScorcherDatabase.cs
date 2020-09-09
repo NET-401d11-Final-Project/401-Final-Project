@@ -34,6 +34,34 @@ namespace Final_Project_Scorcher.Data
         {
             return await _database.Table<Restaraunt>().ToListAsync();
         }
+        private double CalculateLocationRadius(double lat1, double lon1, double lat2, double lon2)
+        {
+            var R = 6371e3; // metres
+            var φ1 = lat1 * Math.PI / 180; // φ, λ in radians
+            var φ2 = lat2 * Math.PI / 180;
+            var Δφ = (lat2 - lat1) * Math.PI / 180;
+            var Δλ = (lon2 - lon1) * Math.PI / 180;
+            var a = Math.Sin(Δφ / 2) * Math.Sin(Δφ / 2) +
+                      Math.Cos(φ1) * Math.Cos(φ2) *
+                      Math.Sin(Δλ / 2) * Math.Sin(Δλ / 2);
+            var c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
+            return R * c; // in metres
+
+        }
+        public async Task<List<Restaraunt>> GetAllRestarauntsByLocation(double lat, double lon)
+        {
+            var list = await GetAllRestaraunts();
+            List<Restaraunt> result = new List<Restaraunt>();
+            foreach(var item in list)
+            {
+                var d = CalculateLocationRadius(item.Lat, item.Lon, lat, lon);
+                if(d < 16093)
+                {
+                    result.Add(item);
+                }
+            }
+            return result;
+        }
 
         public async Task<Restaraunt> CreateRestaraunt(Restaraunt restaraunt)
         {
