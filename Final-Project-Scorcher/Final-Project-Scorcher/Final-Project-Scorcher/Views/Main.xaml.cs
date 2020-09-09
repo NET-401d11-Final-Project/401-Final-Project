@@ -17,6 +17,7 @@ namespace Final_Project_Scorcher.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Main : ContentPage
     {
+        public int MyProperty { get; set; }
         public Main()
         {
             InitializeComponent();
@@ -48,6 +49,14 @@ namespace Final_Project_Scorcher.Views
         {
             Location location = await ScorcherLocation.GetDeviceLocation();
             return await YelpAPIAccess.GetYelpDataAsync(location, search);
+        }
+        
+        public async void NavigateToDishesAsync(object sender, EventArgs e)
+        {
+            Grid grid = (Grid)sender;
+            Label idLabel = (Label)grid.FindByName("Id");
+            string id = idLabel.Text;
+            await Navigation.PushAsync(new Dishes(id));
         }
     }
 }

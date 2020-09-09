@@ -14,11 +14,22 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid Padding="10">
+                        <Grid Padding="10" x:Name="{Binding Id}">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="{Binding Id}" Tapped="NavigateToDishesAsync" NumberOfTapsRequired="1" />
+                            </Grid.GestureRecognizers>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
+                            <Label 
+                                Text="{Binding Id}"
+                                x:Name="Id"
+                                IsVisible="false"
+                            />                            
+                            <Label 
+                                Text="{Binding RestaurantOffset}"
+                            />                            
                             <Image
                                 Grid.RowSpan="2" 
                                 Source="{Binding ImageUrl}"
@@ -29,7 +40,7 @@
                                 Grid.Column="1"
                                 Text="{Binding Name}"
                             />
-                        </Grid>
+                        </Grid>                            
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

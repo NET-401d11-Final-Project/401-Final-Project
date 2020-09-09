@@ -11,7 +11,7 @@ namespace Final_Project_Scorcher
         {
             InitializeComponent();
 
-            MainPage = new Main();
+            MainPage = new NavigationPage(new Main());
         }
 
         protected override void OnStart()
