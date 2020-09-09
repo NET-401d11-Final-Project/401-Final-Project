@@ -20,7 +20,7 @@ namespace Final_Project_Scorcher
                 database = new ScorcherDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Notes.db3"));
             }
             
-            MainPage = new MainPage();
+            ///MainPage = new MainPage();
 
             MainPage = new Main();
         }

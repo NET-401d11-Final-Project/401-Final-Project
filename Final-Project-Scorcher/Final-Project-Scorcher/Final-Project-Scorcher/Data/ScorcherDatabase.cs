@@ -18,17 +18,10 @@ namespace Final_Project_Scorcher.Data
             _database.CreateTableAsync<RestarauntDish>().Wait();
             _database.CreateTableAsync<Dish>().Wait();
         }
-        public async Task<bool> FindRestarauntYelpId(int yelpId)
+        public async Task<Restaraunt> FindRestarauntYelpId(string yelpId)
         {
-            var result = await _database.Table<Restaraunt>().Where(x => x.YelpId == yelpId).FirstOrDefaultAsync();
-            if(result.YelpId == yelpId)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return await _database.Table<Restaraunt>().Where(x => x.YelpId == yelpId).FirstOrDefaultAsync();
+            
         }
         public async Task<List<Restaraunt>> GetAllRestaraunts()
         {
@@ -61,6 +54,12 @@ namespace Final_Project_Scorcher.Data
                 }
             }
             return result;
+        }
+
+        public async Task<Restaraunt> UpdateRestaraunt(Restaraunt restaraunt)
+        {
+            await _database.UpdateAsync(restaraunt);
+            return await GetRestaraunt(restaraunt.Id);
         }
 
         public async Task<Restaraunt> CreateRestaraunt(Restaraunt restaraunt)
