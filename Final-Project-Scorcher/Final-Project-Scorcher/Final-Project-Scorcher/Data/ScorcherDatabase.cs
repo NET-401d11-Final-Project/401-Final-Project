@@ -18,14 +18,22 @@ namespace Final_Project_Scorcher.Data
             _database.CreateTableAsync<RestarauntDish>().Wait();
             _database.CreateTableAsync<Dish>().Wait();
         }
+
+        public async void DeleteAllRestaurants()
+        {
+            await _database.DropTableAsync<Restaraunt>();
+        }
+
         public async Task<Restaraunt> FindRestarauntYelpId(string yelpId)
         {
             return await _database.Table<Restaraunt>().Where(x => x.YelpId == yelpId).FirstOrDefaultAsync();
 
         }
-        public async Task<List<Restaraunt>> GetAllRestaraunts()
+        public async Task<List<Restaraunt>> GetAllRestaraunts(string searchTerm)
         {
-            return await _database.Table<Restaraunt>().ToListAsync();
+            return await _database.Table<Restaraunt>()
+                .Where(x => x.YelpCategory == searchTerm)
+                .ToListAsync();
         }
         private double CalculateLocationRadius(double lat1, double lon1, double lat2, double lon2)
         {
@@ -41,9 +49,9 @@ namespace Final_Project_Scorcher.Data
             return R * c; // in metres
 
         }
-        public async Task<List<Restaraunt>> GetAllRestarauntsByLocation(double lat, double lon)
+        public async Task<List<Restaraunt>> GetAllRestarauntsByLocation(double lat, double lon, string searchTerm)
         {
-            var list = await GetAllRestaraunts();
+            var list = await GetAllRestaraunts(searchTerm);
             List<Restaraunt> result = new List<Restaraunt>();
             foreach (var item in list)
             {

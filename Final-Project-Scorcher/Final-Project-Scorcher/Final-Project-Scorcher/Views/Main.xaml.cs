@@ -11,6 +11,8 @@ using Xamarin.Essentials;
 using Final_Project_Scorcher.APIs;
 using Final_Project_Scorcher.GeoLocation;
 using Final_Project_Scorcher.ViewModels;
+using Final_Project_Scorcher.Models;
+using Yelp.Api.Models;
 
 namespace Final_Project_Scorcher.Views
 {
@@ -26,7 +28,7 @@ namespace Final_Project_Scorcher.Views
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            restaurantList.ItemsSource = await SearchYelpNoTerm();
+            restaurantList.ItemsSource = await GetRestaurantsByLocation("");
         }
 
         void NewSearch(object sender, EventArgs e)
@@ -37,17 +39,55 @@ namespace Final_Project_Scorcher.Views
         private async void NewSearchAsync(object sender, EventArgs e)
         {
             SearchBar bar = (SearchBar)sender;
-            restaurantList.ItemsSource = await SearchYelp(bar.Text);
+            restaurantList.ItemsSource = await GetRestaurantsByLocation(bar.Text);
+        }
+        
+        private async Task<List<Restaraunt>> GetRestaurantsByLocation(string searchTerm)
+        {
+            //App.database.DeleteAllRestaurants();
+
+            Xamarin.Essentials.Location location = await ScorcherLocation.GetDeviceLocation();
+            List<Restaraunt> restarauntsWithinRadius = await App.database.GetAllRestarauntsByLocation(location.Latitude, location.Longitude, searchTerm);
+
+            IList<BusinessResponse> yelpRestaurants = await SearchYelp(location, searchTerm);
+            foreach (BusinessResponse oneBiz in yelpRestaurants)
+            {
+                Restaraunt restaraunt = new Restaraunt()
+                {
+                    Date = DateTime.Now,
+                    Lat = oneBiz.Coordinates.Latitude,
+                    Lon = oneBiz.Coordinates.Longitude,
+                    Name = oneBiz.Name,
+                    Address = oneBiz.Location.Address1,
+                    City = oneBiz.Location.City,
+                    State = oneBiz.Location.State,
+                    Zip = oneBiz.Location.ZipCode,
+                    YelpId = oneBiz.Id,
+                    YelpCategory = searchTerm,
+                    ImageUrl = oneBiz.ImageUrl,
+                    LevelMax = 5,
+                    LevelMin = 1
+                };
+                Restaraunt dbRestaurant = await App.database.FindRestarauntYelpId(restaraunt.YelpId);
+                if (dbRestaurant == null)
+                {
+                    await App.database.CreateRestaraunt(restaraunt);
+                    restarauntsWithinRadius.Add(restaraunt);
+                }
+                else
+                {
+                    if (DateTime.Now.Subtract(dbRestaurant.Date).TotalDays > 3)
+                    {
+                        restaraunt.RestarauntOffset = dbRestaurant.RestarauntOffset;
+                        await App.database.UpdateRestaraunt(restaraunt);
+                    }
+                }
+            }
+            return restarauntsWithinRadius;
         }
 
-        private async Task<IList<Yelp.Api.Models.BusinessResponse>> SearchYelpNoTerm()
+        private async Task<IList<Yelp.Api.Models.BusinessResponse>> SearchYelp(Xamarin.Essentials.Location location, string search)
         {
-            return await SearchYelp("");
-        }
-
-        private async Task<IList<Yelp.Api.Models.BusinessResponse>> SearchYelp(string search)
-        {
-            Location location = await ScorcherLocation.GetDeviceLocation();
             return await YelpAPIAccess.GetYelpDataAsync(location, search);
         }
         

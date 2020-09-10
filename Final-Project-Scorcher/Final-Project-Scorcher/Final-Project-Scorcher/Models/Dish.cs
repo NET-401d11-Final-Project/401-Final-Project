@@ -6,7 +6,7 @@ using System.Text;
 namespace Final_Project_Scorcher.Models
 {
     public class Dish
-{
+    {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public int Level { get; set; }
