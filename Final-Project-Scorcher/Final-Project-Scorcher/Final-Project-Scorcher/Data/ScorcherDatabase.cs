@@ -18,15 +18,43 @@ namespace Final_Project_Scorcher.Data
             _database.CreateTableAsync<RestarauntDish>().Wait();
             _database.CreateTableAsync<Dish>().Wait();
         }
+
+        public async void DeleteAllRestaurants()
+        {
+            await _database.DropTableAsync<Dish>();
+            await _database.DropTableAsync<RestarauntDish>();
+            await _database.DropTableAsync<Restaraunt>();
+
+        }
+
         public async Task<Restaraunt> FindRestarauntYelpId(string yelpId)
         {
             return await _database.Table<Restaraunt>().Where(x => x.YelpId == yelpId).FirstOrDefaultAsync();
 
         }
-        public async Task<List<Restaraunt>> GetAllRestaraunts()
+        public async Task<List<Restaraunt>> GetAllRestaraunts(string searchTerm)
         {
-            return await _database.Table<Restaraunt>().ToListAsync();
+            return await _database.Table<Restaraunt>()
+                .Where(x => x.YelpCategory == searchTerm)
+                .ToListAsync();
         }
+
+        public async Task UpdateRestarauntOffSet(string yelpId)
+        {
+            List<Dish> restaurantDishes = await GetAllDishesByYelpId(yelpId);
+            int count = restaurantDishes.Count;
+            decimal totalOffset = 0;
+
+            foreach(var item in restaurantDishes)
+            {
+                totalOffset += item.RestaurantDishOffset;
+            }
+            decimal offSet = totalOffset / count;
+            Restaraunt restaraunt = await FindRestarauntYelpId(yelpId);
+            restaraunt.RestarauntOffset = offSet;
+            await CreateRestaraunt(restaraunt);
+        }
+
         private double CalculateLocationRadius(double lat1, double lon1, double lat2, double lon2)
         {
             var R = 6371e3; // metres
@@ -41,9 +69,9 @@ namespace Final_Project_Scorcher.Data
             return R * c; // in metres
 
         }
-        public async Task<List<Restaraunt>> GetAllRestarauntsByLocation(double lat, double lon)
+        public async Task<List<Restaraunt>> GetAllRestarauntsByLocation(double lat, double lon, string searchTerm)
         {
-            var list = await GetAllRestaraunts();
+            var list = await GetAllRestaraunts(searchTerm);
             List<Restaraunt> result = new List<Restaraunt>();
             foreach (var item in list)
             {
@@ -129,6 +157,23 @@ namespace Final_Project_Scorcher.Data
             return await _database.Table<Dish>().ToListAsync();
         }
 
+        public async Task<List<Dish>> GetAllDishesByYelpId(string yelpId)
+        {
+           var dishId = await _database.Table<RestarauntDish>().Where(x => x.YelpId == yelpId).ToListAsync();
+           List<Dish> dishList = new List<Dish>();
+           foreach (var item in dishId)
+           {
+               dishList.Add(await GetDish(item.Id));
+           }
+           return dishList;
+        }
+
+        public async Task<string> ReturnYelpIdByDish(int dishId)
+        {
+            var yelpId = await _database.Table<RestarauntDish>().Where(x => x.DishId == dishId).FirstOrDefaultAsync();
+            return yelpId.YelpId;
+        }
+
         public async Task<Dish> CreateDish(Dish dish)
         {
             if (dish.Id != 0)
@@ -156,5 +201,7 @@ namespace Final_Project_Scorcher.Data
             await _database.DeleteAsync(dish);
             return dish;
         }
+
+
     }
 }

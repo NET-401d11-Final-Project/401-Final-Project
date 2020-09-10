@@ -10,7 +10,7 @@
             CancelButtonColor="Black"
         >
         </SearchBar>
-        <ListView x:Name="restaurantList">
+        <ListView x:Name="RestaurantList">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -23,7 +23,7 @@
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
                             <Label 
-                                Text="{Binding Id}"
+                                Text="{Binding YelpId}"
                                 x:Name="Id"
                                 IsVisible="false"
                             />                            

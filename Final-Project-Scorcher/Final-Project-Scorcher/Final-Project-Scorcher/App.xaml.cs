@@ -4,6 +4,7 @@ using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Final_Project_Scorcher.Views;
+using Final_Project_Scorcher.Data;
 
 namespace Final_Project_Scorcher
 {

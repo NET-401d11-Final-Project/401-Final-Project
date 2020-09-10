@@ -10,6 +10,7 @@ namespace Final_Project_Scorcher.Models
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public string YelpId { get; set; }
+        public string YelpCategory { get; set; }
         public decimal RestarauntOffset { get; set; }
         public int LevelMin { get; set; }
         public int LevelMax { get; set; }

@@ -4,7 +4,29 @@
              x:Class="Final_Project_Scorcher.Views.Dishes">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="{Binding Id2}" x:Name="Id2" />
+            <ListView x:Name="DishesList">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="10" x:Name="{Binding Id}">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer CommandParameter="{Binding Id}" Tapped="NavigateToRatedDish" NumberOfTapsRequired="1" />
+                                </Grid.GestureRecognizers>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Label Text="{Binding Id}" x:Name="Id" IsVisible="false"/>
+                                <Label Text="{Binding Name}" Grid.Column="1"/>
+                                <Label Text="{Binding Level}" Grid.Column="2"/>
+                                <Label Text="{Binding TotalVotes}" Grid.Column="3"/>
+                                <Label Text="{Binding AvgLevel}" Grid.Column="4"/>
+                                <Label Text="{Binding RestaurantDishOffset}" Grid.Column="5"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
