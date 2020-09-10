@@ -10,6 +10,7 @@ namespace Final_Project_Scorcher.Models
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public int RestarauntId { get; set; }
+        public string YelpId { get; set; }
         public int DishId { get; set; }
 
 

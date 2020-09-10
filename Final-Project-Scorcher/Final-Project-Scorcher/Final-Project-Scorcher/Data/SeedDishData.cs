@@ -7,6 +7,18 @@ namespace Final_Project_Scorcher.Data
 {
     public class SeedDishData
     {
+        public static void SeedRestaurantDataFromYelpId(string yelpId)
+        {
+            switch (yelpId)
+            {
+                case "8sZ27zjv8tYxEmx_0dngrA":
+                    SeedJaiThaiDishes();
+                    break;
+                default:
+                    break;
+            }
+        }
+
         public async static void SeedJaiThaiDishes()
         {
             List<Dish> dishes = new List<Dish>();
@@ -59,9 +71,25 @@ namespace Final_Project_Scorcher.Data
             restaurantDishes.Add(
                 new RestarauntDish
                 {
-
+                    YelpId = "8sZ27zjv8tYxEmx_0dngrA",
+                    DishId = 1
                 }
             );
+            restaurantDishes.Add(
+                new RestarauntDish
+                {
+                    YelpId = "8sZ27zjv8tYxEmx_0dngrA",
+                    DishId = 2
+                }
+            );
+            restaurantDishes.Add(
+                new RestarauntDish
+                {
+                    YelpId = "8sZ27zjv8tYxEmx_0dngrA",
+                    DishId = 3
+                }
+            );
+
         }
     }
 }
@@ -85,6 +113,7 @@ namespace Final_Project_Scorcher.Data
 //    [PrimaryKey, AutoIncrement]
 //    public int Id { get; set; }
 //    public int RestarauntId { get; set; }
+//    public string YelpId { get; set; }
 //    public int DishId { get; set; }
 
 
