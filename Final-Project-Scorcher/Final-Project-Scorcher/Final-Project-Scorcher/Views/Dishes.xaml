@@ -17,6 +17,10 @@
                                     <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
                                 <Label Text="{Binding Name}"/>
+                                <Label Text="{Binding Level}"/>
+                                <Label Text="{Binding TotalVotes}"/>
+                                <Label Text="{Binding AvgLevel}"/>
+                                <Label Text="{Binding RestaurantDishOffset}"/>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

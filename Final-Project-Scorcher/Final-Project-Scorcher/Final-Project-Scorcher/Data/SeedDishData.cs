@@ -2,26 +2,28 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Final_Project_Scorcher.Data
 {
     public class SeedDishData
     {
-        public static void SeedRestaurantDataFromYelpId(string yelpId)
+        public async static Task SeedRestaurantDataFromYelpId(string yelpId)
         {
             switch (yelpId)
             {
                 case "8sZ27zjv8tYxEmx_0dngrA":
-                    SeedJaiThaiDishes();
+                   await SeedJaiThaiDishes();
                     break;
                 default:
                     break;
             }
+           
         }
 
-        public async static void SeedJaiThaiDishes()
+        public async static Task<List<Dish>> SeedJaiThaiDishes()
         {
-            //App.database.DeleteAllRestaurants();
+
             List<Dish> dishes = new List<Dish>();
             dishes.Add(
             new Dish
@@ -91,6 +93,8 @@ namespace Final_Project_Scorcher.Data
             {
                 await App.database.CreateRestarauntDish(dish);
             }
+
+            return dishes;
         }
     }
 }

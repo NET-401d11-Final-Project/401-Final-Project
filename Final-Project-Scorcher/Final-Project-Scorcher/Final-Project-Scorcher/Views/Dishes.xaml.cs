@@ -23,19 +23,24 @@ namespace Final_Project_Scorcher.Views
         protected async override void OnAppearing()
         {
             base.OnAppearing();
+            //App.database.DeleteAllRestaurants();
+
             var results = await App.database.GetAllDishesByYelpId(YelpId);
             if(results.Count <= 0)
             {
-                SeedDishData.SeedRestaurantDataFromYelpId(YelpId);
+               await SeedDishData.SeedRestaurantDataFromYelpId(YelpId);
                 results = await App.database.GetAllDishesByYelpId(YelpId);
             }
             DishesList.ItemsSource = results;
 
         }
 
-        public void NavigateToRatedDish(object sender, EventArgs e)
+        public async void NavigateToRatedDish(object sender, EventArgs e)
         {
-
+            Grid grid = (Grid)sender;
+            Label idLabel = (Label)grid.FindByName("Id");
+            int id = Convert.ToInt32(idLabel.Text);
+            await Navigation.PushAsync(new RatedDish(id));
         }
     }
 }

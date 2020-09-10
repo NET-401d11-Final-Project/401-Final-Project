@@ -22,7 +22,6 @@ namespace Final_Project_Scorcher
                 database = new ScorcherDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Notes.db3"));
             }
 
-            SeedDishData.SeedJaiThaiDishes();
 
             MainPage = new NavigationPage(new Main());
         }

@@ -22,6 +22,9 @@ namespace Final_Project_Scorcher.Data
         public async void DeleteAllRestaurants()
         {
             await _database.DropTableAsync<Dish>();
+            await _database.DropTableAsync<RestarauntDish>();
+            await _database.DropTableAsync<Restaraunt>();
+
         }
 
         public async Task<Restaraunt> FindRestarauntYelpId(string yelpId)

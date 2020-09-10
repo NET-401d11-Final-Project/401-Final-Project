@@ -13,7 +13,7 @@ namespace Final_Project_Scorcher.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Cost { get; set; }
-        public decimal RestarauntDishOffset { get; set; }
+        public decimal RestaurantDishOffset { get; set; }
         public int TotalVotes { get; set; }
         public decimal AvgLevel { get; set; }
     }
