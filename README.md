@@ -17,3 +17,6 @@
 
 ## Domain Model
 ![Domain-Model](./Assets/domain-model.png)
+
+## Guides and Resources
+* CalculateLocationRadius Method in ScorcherDatabase provided by https://www.movable-type.co.uk/scripts/latlong.html

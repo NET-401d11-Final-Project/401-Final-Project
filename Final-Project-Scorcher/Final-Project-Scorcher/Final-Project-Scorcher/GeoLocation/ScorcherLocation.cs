@@ -10,7 +10,6 @@ namespace Final_Project_Scorcher.GeoLocation
     {
         public async static Task<Location> GetDeviceLocation()
         {
-            
             Location location = await Geolocation.GetLastKnownLocationAsync();
             if (location == null || LocationIsStale(location))
             {
