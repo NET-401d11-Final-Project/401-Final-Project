@@ -21,7 +21,7 @@ namespace Final_Project_Scorcher.Data
 
         public async void DeleteAllRestaurants()
         {
-            await _database.DropTableAsync<Restaraunt>();
+            await _database.DropTableAsync<Dish>();
         }
 
         public async Task<Restaraunt> FindRestarauntYelpId(string yelpId)
@@ -137,6 +137,16 @@ namespace Final_Project_Scorcher.Data
             return await _database.Table<Dish>().ToListAsync();
         }
 
+        public async Task<List<Dish>> GetAllDishesByYelpId(string yelpId)
+        {
+           var dishId = await _database.Table<RestarauntDish>().Where(x => x.YelpId == yelpId).ToListAsync();
+           List<Dish> dishList = new List<Dish>();
+           foreach (var item in dishId)
+           {
+               dishList.Add(await GetDish(item.Id));
+           }
+           return dishList;
+        }
         public async Task<Dish> CreateDish(Dish dish)
         {
             if (dish.Id != 0)
@@ -164,5 +174,7 @@ namespace Final_Project_Scorcher.Data
             await _database.DeleteAsync(dish);
             return dish;
         }
+
+
     }
 }

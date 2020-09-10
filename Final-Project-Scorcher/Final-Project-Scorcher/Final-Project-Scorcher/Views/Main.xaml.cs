@@ -28,7 +28,7 @@ namespace Final_Project_Scorcher.Views
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            restaurantList.ItemsSource = await GetRestaurantsByLocation("");
+            RestaurantList.ItemsSource = await GetRestaurantsByLocation("");
         }
 
         void NewSearch(object sender, EventArgs e)
@@ -39,7 +39,7 @@ namespace Final_Project_Scorcher.Views
         private async void NewSearchAsync(object sender, EventArgs e)
         {
             SearchBar bar = (SearchBar)sender;
-            restaurantList.ItemsSource = await GetRestaurantsByLocation(bar.Text);
+            RestaurantList.ItemsSource = await GetRestaurantsByLocation(bar.Text);
         }
         
         private async Task<List<Restaraunt>> GetRestaurantsByLocation(string searchTerm)

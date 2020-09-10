@@ -21,11 +21,11 @@ namespace Final_Project_Scorcher.Data
 
         public async static void SeedJaiThaiDishes()
         {
+            //App.database.DeleteAllRestaurants();
             List<Dish> dishes = new List<Dish>();
             dishes.Add(
             new Dish
             {
-                Id = 1,
                 Level = 3,
                 Name = "Panang Curry",
                 Description = "Spicy red curry with coconut milk, bamboo shoots, chili and sweet basil.",
@@ -38,7 +38,6 @@ namespace Final_Project_Scorcher.Data
             dishes.Add(
             new Dish
             {
-                Id = 2,
                 Level = 4,
                 Name = "Phud Kee Mao",
                 Description = "Fresh wide rice noodles stir fried with chili paste, egg and mixed vegetables.",
@@ -51,7 +50,6 @@ namespace Final_Project_Scorcher.Data
             dishes.Add(
             new Dish
             {
-                Id = 3,
                 Level = 2,
                 Name = "Ba Mee Num",
                 Description = "Egg noodles, green onion, cilantro, bean sprouts, baby bokchoy, toasted garlic in chicken broth or vegetarian broth.",
@@ -65,7 +63,7 @@ namespace Final_Project_Scorcher.Data
             foreach (Dish oneDish in dishes)
             {
                 await App.database.CreateDish(oneDish);
-            }
+            }            
 
             List<RestarauntDish> restaurantDishes = new List<RestarauntDish>();
             restaurantDishes.Add(
@@ -89,7 +87,10 @@ namespace Final_Project_Scorcher.Data
                     DishId = 3
                 }
             );
-
+            foreach (var dish in restaurantDishes)
+            {
+                await App.database.CreateRestarauntDish(dish);
+            }
         }
     }
 }

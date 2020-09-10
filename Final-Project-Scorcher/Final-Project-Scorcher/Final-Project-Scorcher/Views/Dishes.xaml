@@ -4,7 +4,24 @@
              x:Class="Final_Project_Scorcher.Views.Dishes">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="{Binding Id2}" x:Name="Id2" />
+            <ListView x:Name="DishesList">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="10" x:Name="{Binding Id}">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer CommandParameter="{Binding Id}" Tapped="NavigateToRatedDish" NumberOfTapsRequired="1" />
+                                </Grid.GestureRecognizers>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Label Text="{Binding Name}"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
