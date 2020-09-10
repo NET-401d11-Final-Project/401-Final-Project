@@ -9,6 +9,7 @@
         <Entry x:Name="AvgLevel"  Keyboard="Numeric" Placeholder="Your name here" />
 
 
+
         <Button Text="Add contact" HorizontalOptions="FillAndExpand" BackgroundColor="#1690F4" TextColor="White" Margin="0,20" Clicked="OnButtonClicked" />
         <ListView x:Name="ContactListView"
                       ItemsSource="{Binding Contacts}"
@@ -26,4 +27,4 @@
             </ListView.ItemTemplate>
         </ListView>
     </StackLayout>
-</ContentPage>         
+
