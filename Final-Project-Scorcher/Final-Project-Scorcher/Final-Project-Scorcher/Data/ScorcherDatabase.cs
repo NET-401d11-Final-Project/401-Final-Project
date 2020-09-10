@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Final_Project_Scorcher.Data
 {
     public class ScorcherDatabase
-{
+    {
         readonly SQLiteAsyncConnection _database;
 
         public ScorcherDatabase(string DbPath)
@@ -18,17 +18,10 @@ namespace Final_Project_Scorcher.Data
             _database.CreateTableAsync<RestarauntDish>().Wait();
             _database.CreateTableAsync<Dish>().Wait();
         }
-        public async Task<bool> FindRestarauntYelpId(int yelpId)
+        public async Task<Restaraunt> FindRestarauntYelpId(string yelpId)
         {
-            var result = await _database.Table<Restaraunt>().Where(x => x.YelpId == yelpId).FirstOrDefaultAsync();
-            if(result.YelpId == yelpId)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return await _database.Table<Restaraunt>().Where(x => x.YelpId == yelpId).FirstOrDefaultAsync();
+
         }
         public async Task<List<Restaraunt>> GetAllRestaraunts()
         {
@@ -52,10 +45,10 @@ namespace Final_Project_Scorcher.Data
         {
             var list = await GetAllRestaraunts();
             List<Restaraunt> result = new List<Restaraunt>();
-            foreach(var item in list)
+            foreach (var item in list)
             {
                 var d = CalculateLocationRadius(item.Lat, item.Lon, lat, lon);
-                if(d < 16093)
+                if (d < 16093)
                 {
                     result.Add(item);
                 }
@@ -63,9 +56,15 @@ namespace Final_Project_Scorcher.Data
             return result;
         }
 
+        public async Task<Restaraunt> UpdateRestaraunt(Restaraunt restaraunt)
+        {
+            await _database.UpdateAsync(restaraunt);
+            return await GetRestaraunt(restaraunt.Id);
+        }
+
         public async Task<Restaraunt> CreateRestaraunt(Restaraunt restaraunt)
         {
-            if(restaraunt.Id != 0)
+            if (restaraunt.Id != 0)
             {
                 await _database.UpdateAsync(restaraunt);
                 return restaraunt;
