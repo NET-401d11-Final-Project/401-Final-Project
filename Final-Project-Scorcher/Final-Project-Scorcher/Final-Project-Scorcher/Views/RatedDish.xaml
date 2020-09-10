@@ -9,25 +9,20 @@
                     <DataTemplate>
                         <ViewCell>
                             <Grid Padding="10" x:Name="{Binding Id}">
-                                <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer CommandParameter="{Binding Id}" Tapped="NavigateToDishesAsync" NumberOfTapsRequired="1" />
-                                </Grid.GestureRecognizers>
+                                
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
                                 <Label 
                                 Text="{Binding Name}"
+                                    Grid.Column="1"
                             />
                                 <Label 
                                 Text="{Binding Level}"
+                                    Grid.Column="2"
                             />
-                                <Image
-                                Grid.RowSpan="2" 
-                                Source="{Binding ImageUrl}"
-                                HeightRequest="60"
-                                WidthRequest="60"
-                            />
+
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
@@ -35,7 +30,7 @@
             </ListView>
             <Label Text="Rating" FontSize="20" FontAttributes="Bold" TextColor="#1690F4" VerticalOptions="Center" HorizontalOptions="Center" Margin="20"/>
             <Label Text="DishRating"/>
-            <Entry x:Name="DishRating"  Keyboard="Numeric" Placeholder="Your name here" />
+            <Entry x:Name="DishRating"  Keyboard="Numeric" Placeholder="Your Rating Goes Here" />
 
 
             <Button Text="Add Dish Rating" HorizontalOptions="FillAndExpand" BackgroundColor="#1690F4" TextColor="White" Margin="0,20" Clicked="OnButtonClicked" />

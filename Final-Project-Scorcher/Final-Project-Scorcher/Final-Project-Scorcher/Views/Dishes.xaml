@@ -16,11 +16,12 @@
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
-                                <Label Text="{Binding Name}"/>
-                                <Label Text="{Binding Level}"/>
-                                <Label Text="{Binding TotalVotes}"/>
-                                <Label Text="{Binding AvgLevel}"/>
-                                <Label Text="{Binding RestaurantDishOffset}"/>
+                                <Label Text="{Binding Id}" x:Name="Id" IsVisible="false"/>
+                                <Label Text="{Binding Name}" Grid.Column="1"/>
+                                <Label Text="{Binding Level}" Grid.Column="2"/>
+                                <Label Text="{Binding TotalVotes}" Grid.Column="3"/>
+                                <Label Text="{Binding AvgLevel}" Grid.Column="4"/>
+                                <Label Text="{Binding RestaurantDishOffset}" Grid.Column="5"/>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

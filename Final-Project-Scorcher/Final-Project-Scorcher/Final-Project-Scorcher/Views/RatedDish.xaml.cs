@@ -35,8 +35,11 @@ public partial class RatedDish : ContentPage
             displayDish.TotalVotes += 1;
             displayDish.TotalLevel += num;
             displayDish.AvgLevel = displayDish.TotalLevel / displayDish.TotalVotes;
-            displayDish.RestarauntDishOffset = displayDish.Level - displayDish.AvgLevel;
+            displayDish.RestaurantDishOffset = displayDish.Level - displayDish.AvgLevel;
             await App.database.CreateDish(displayDish);
+            string yelpId = await App.database.ReturnYelpIdByDish(displayDish.Id);
+            await App.database.UpdateRestarauntOffSet(yelpId);
+            await Navigation.PushAsync(new Dishes(yelpId));
         }
     }
 }

@@ -32,7 +32,7 @@ namespace Final_Project_Scorcher.Data
                 Name = "Panang Curry",
                 Description = "Spicy red curry with coconut milk, bamboo shoots, chili and sweet basil.",
                 Cost = 12.95m,
-                RestarauntDishOffset = 0.0m,
+                RestaurantDishOffset = 0.0m,
                 TotalVotes = 0,
                 AvgLevel = 3
             }
@@ -44,7 +44,7 @@ namespace Final_Project_Scorcher.Data
                 Name = "Phud Kee Mao",
                 Description = "Fresh wide rice noodles stir fried with chili paste, egg and mixed vegetables.",
                 Cost = 12.95m,
-                RestarauntDishOffset = 0.0m,
+                RestaurantDishOffset = 0.0m,
                 TotalVotes = 0,
                 AvgLevel = 4
             }
@@ -56,7 +56,7 @@ namespace Final_Project_Scorcher.Data
                 Name = "Ba Mee Num",
                 Description = "Egg noodles, green onion, cilantro, bean sprouts, baby bokchoy, toasted garlic in chicken broth or vegetarian broth.",
                 Cost = 10.95m,
-                RestarauntDishOffset = 0.0m,
+                RestaurantDishOffset = 0.0m,
                 TotalVotes = 0,
                 AvgLevel = 2
             }

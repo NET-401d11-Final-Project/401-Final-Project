@@ -38,6 +38,23 @@ namespace Final_Project_Scorcher.Data
                 .Where(x => x.YelpCategory == searchTerm)
                 .ToListAsync();
         }
+
+        public async Task UpdateRestarauntOffSet(string yelpId)
+        {
+            List<Dish> restaurantDishes = await GetAllDishesByYelpId(yelpId);
+            int count = restaurantDishes.Count;
+            decimal totalOffset = 0;
+
+            foreach(var item in restaurantDishes)
+            {
+                totalOffset += item.RestaurantDishOffset;
+            }
+            decimal offSet = totalOffset / count;
+            Restaraunt restaraunt = await FindRestarauntYelpId(yelpId);
+            restaraunt.RestarauntOffset = offSet;
+            await CreateRestaraunt(restaraunt);
+        }
+
         private double CalculateLocationRadius(double lat1, double lon1, double lat2, double lon2)
         {
             var R = 6371e3; // metres
@@ -150,6 +167,13 @@ namespace Final_Project_Scorcher.Data
            }
            return dishList;
         }
+
+        public async Task<string> ReturnYelpIdByDish(int dishId)
+        {
+            var yelpId = await _database.Table<RestarauntDish>().Where(x => x.DishId == dishId).FirstOrDefaultAsync();
+            return yelpId.YelpId;
+        }
+
         public async Task<Dish> CreateDish(Dish dish)
         {
             if (dish.Id != 0)
