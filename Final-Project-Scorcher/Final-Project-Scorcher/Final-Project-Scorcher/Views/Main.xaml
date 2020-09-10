@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Final_Project_Scorcher.Views.Main">
+    <StackLayout>
+        <Label>Scorcher</Label>
+        <SearchBar 
+            Placeholder="Search text..." 
+            SearchButtonPressed="NewSearch"
+            CancelButtonColor="Black"
+        >
+        </SearchBar>
+        <ListView x:Name="restaurantList">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="10" x:Name="{Binding Id}">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="{Binding Id}" Tapped="NavigateToDishesAsync" NumberOfTapsRequired="1" />
+                            </Grid.GestureRecognizers>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label 
+                                Text="{Binding Id}"
+                                x:Name="Id"
+                                IsVisible="false"
+                            />                            
+                            <Label 
+                                Text="{Binding RestaurantOffset}"
+                            />                            
+                            <Image
+                                Grid.RowSpan="2" 
+                                Source="{Binding ImageUrl}"
+                                HeightRequest="60"
+                                WidthRequest="60"
+                            />
+                            <Label
+                                Grid.Column="1"
+                                Text="{Binding Name}"
+                            />
+                        </Grid>                            
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+    
+</ContentPage>
+
+
+<!--DisplayPhone	"(206) 787-8444"	string
+		Distance	520.2365	float
+		DistanceAway	0.32	double
+		Hours	(null)	Yelp.Api.Models.Hour[]
+		Id	"bBDeZ3QkljIbPPeQ__Xq-w"	string
+		ImageUrl	"https://s3-media2.fl.yelpcdn.com/bphoto/Muh7UMdqeb59y0V52Vy05Q/o.jpg"	string
+		IsClaimed	false	bool
+		IsClosed	false	bool
++		Location	{Yelp.Api.Models.Location}	Yelp.Api.Models.Location
+		Name	"Noi Thai Cuisine"	string
+		Phone	"+12067878444"	string
+		Photos	(null)	string[]
+		Price	"$$"	string
+		Rating	4	float
+		ReviewCount	754	int
+		Url-->
