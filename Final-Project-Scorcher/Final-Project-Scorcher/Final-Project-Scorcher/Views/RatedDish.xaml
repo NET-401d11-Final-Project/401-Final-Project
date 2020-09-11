@@ -4,36 +4,82 @@
              x:Class="Final_Project_Scorcher.Views.RatedDish">
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="DishList">
+            <Label Style="{StaticResource TitleLabel}" Text="Scorcher"/>
+            <Grid Padding="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Label 
+                    Grid.Column="0" 
+                    Text="Dish Name"
+                    FontSize="25"
+                    HorizontalOptions="Center"
+                    FontAttributes="Bold"
+                />
+                <Label 
+                    Grid.Column="1" 
+                    Text="Ordered Level"
+                    FontSize="25"
+                    HorizontalOptions="Center"
+                    FontAttributes="Bold"
+                />
+            </Grid>
+            <ListView x:Name="DishList" RowHeight="600">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <Grid Padding="10" x:Name="{Binding Id}">
-                                
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="1*" />
                                 </Grid.RowDefinitions>
                                 <Label 
-                                Text="{Binding Name}"
-                                    Grid.Column="1"
-                            />
+                                    Text="{Binding Name}"
+                                    Grid.Column="0"
+                                    FontSize="22"
+                                    HorizontalOptions="Center"
+                                    Grid.Row="0"
+                                />
                                 <Label 
-                                Text="{Binding Level}"
-                                    Grid.Column="2"
-                            />
-
+                                    Text="{Binding Level}"
+                                    Grid.Column="1"
+                                    FontSize="22"
+                                    HorizontalOptions="Center"
+                                    Grid.Row="0"
+                                />
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Label Text="Rating" FontSize="20" FontAttributes="Bold" TextColor="#1690F4" VerticalOptions="Center" HorizontalOptions="Center" Margin="20"/>
-            <Label Text="DishRating"/>
-            <Entry x:Name="DishRating"  Keyboard="Numeric" Placeholder="Your Rating Goes Here" />
-
-
-            <Button Style="{StaticResource buttonStyle}" Text="Add Dish Rating" HorizontalOptions="FillAndExpand" BackgroundColor="#1690F4" TextColor="White" Margin="0,20" Clicked="OnButtonClicked" />
+            <Label 
+                Text="Rating" 
+                FontSize="20" 
+                FontAttributes="Bold" 
+                TextColor="Goldenrod" 
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" 
+                Margin="20"
+                Grid.ColumnSpan="2"
+                Grid.Row="1"
+            />
+            <Entry
+                x:Name="DishRating"
+                Keyboard="Numeric" 
+                Placeholder="Your Rating Goes Here"
+            />
+            <Button 
+                Style="{StaticResource buttonStyle}" 
+                Text="Add Dish Rating" 
+                HorizontalOptions="FillAndExpand" 
+                BackgroundColor="Goldenrod" 
+                TextColor="White" 
+                Margin="0,20" 
+                Clicked="OnButtonClicked"
+            />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
