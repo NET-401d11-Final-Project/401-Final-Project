@@ -13,7 +13,7 @@
 ![ERD](./Assets/ERD.png)
 
 ## Wireframe
-![Wireframe](./Assets/Wireframe.png)
+![WireFrame](./Assets/WireFrame.png)
 
 ## Domain Model
 ![Domain-Model](./Assets/domain-model.png)
