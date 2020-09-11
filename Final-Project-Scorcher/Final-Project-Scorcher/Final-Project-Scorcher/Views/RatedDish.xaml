@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Final_Project_Scorcher.Views.RatedDish">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Style="{StaticResource TitleLabel}" Text="Scorcher"/>
+            <Grid Padding="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Label 
+                    Grid.Column="0" 
+                    Text="Dish Name"
+                    FontSize="25"
+                    HorizontalOptions="Center"
+                    FontAttributes="Bold"
+                />
+                <Label 
+                    Grid.Column="1" 
+                    Text="Ordered Level"
+                    FontSize="25"
+                    HorizontalOptions="Center"
+                    FontAttributes="Bold"
+                />
+            </Grid>
+            <ListView x:Name="DishList" RowHeight="600">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="10" x:Name="{Binding Id}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*" />
+                                </Grid.RowDefinitions>
+                                <Label 
+                                    Text="{Binding Name}"
+                                    Grid.Column="0"
+                                    FontSize="22"
+                                    HorizontalOptions="Center"
+                                    Grid.Row="0"
+                                />
+                                <Label 
+                                    Text="{Binding Level}"
+                                    Grid.Column="1"
+                                    FontSize="22"
+                                    HorizontalOptions="Center"
+                                    Grid.Row="0"
+                                />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Label 
+                Text="Rating" 
+                FontSize="20" 
+                FontAttributes="Bold" 
+                TextColor="Goldenrod" 
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" 
+                Margin="20"
+                Grid.ColumnSpan="2"
+                Grid.Row="1"
+            />
+            <Entry
+                x:Name="DishRating"
+                Keyboard="Numeric" 
+                Placeholder="Your Rating Goes Here"
+            />
+            <Button 
+                Style="{StaticResource buttonStyle}" 
+                Text="Add Dish Rating" 
+                HorizontalOptions="FillAndExpand" 
+                BackgroundColor="Goldenrod" 
+                TextColor="White" 
+                Margin="0,20" 
+                Clicked="OnButtonClicked"
+            />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
