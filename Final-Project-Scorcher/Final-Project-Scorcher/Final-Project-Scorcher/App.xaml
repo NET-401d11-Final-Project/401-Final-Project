@@ -12,5 +12,10 @@
             <Setter Property="WidthRequest" Value="200" />
             <Setter Property="TextColor" Value="Teal" />
         </Style>
+        <Style x:Key="TitleLabel" TargetType="Label">
+            <Setter Property="FontSize" Value="40" />
+            <Setter Property="TextColor" Value="Red" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+        </Style>
     </Application.Resources>
 </Application>
