@@ -66,7 +66,8 @@ namespace Final_Project_Scorcher.Views
                     YelpCategory = searchTerm,
                     ImageUrl = oneBiz.ImageUrl,
                     LevelMax = 5,
-                    LevelMin = 1
+                    LevelMin = 1,
+                    RestarauntOffset = 0.0m
                 };
                 Restaraunt dbRestaurant = await App.database.FindRestarauntYelpId(restaraunt.YelpId);
                 if (dbRestaurant == null)

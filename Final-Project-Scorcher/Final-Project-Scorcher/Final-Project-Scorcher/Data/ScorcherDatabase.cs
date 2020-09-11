@@ -51,7 +51,7 @@ namespace Final_Project_Scorcher.Data
             }
             decimal offSet = totalOffset / count;
             Restaraunt restaraunt = await FindRestarauntYelpId(yelpId);
-            restaraunt.RestarauntOffset = offSet;
+            restaraunt.RestarauntOffset = Math.Round(offSet, 1);
             await CreateRestaraunt(restaraunt);
         }
 

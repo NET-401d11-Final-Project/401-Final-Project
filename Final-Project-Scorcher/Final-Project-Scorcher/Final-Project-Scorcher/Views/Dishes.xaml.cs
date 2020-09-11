@@ -24,11 +24,12 @@ namespace Final_Project_Scorcher.Views
         {
             base.OnAppearing();
             //App.database.DeleteAllRestaurants();
-
+            var restaraunt = await App.database.FindRestarauntYelpId(YelpId);
+            RestaurantName.Text = restaraunt.Name;
             var results = await App.database.GetAllDishesByYelpId(YelpId);
             if(results.Count <= 0)
             {
-               await SeedDishData.SeedRestaurantDataFromYelpId(YelpId);
+                await SeedDishData.SeedRestaurantDataFromYelpId(YelpId);
                 results = await App.database.GetAllDishesByYelpId(YelpId);
             }
             DishesList.ItemsSource = results;

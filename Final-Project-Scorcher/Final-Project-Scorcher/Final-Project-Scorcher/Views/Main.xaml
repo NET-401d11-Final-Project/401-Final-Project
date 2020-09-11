@@ -3,66 +3,91 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Final_Project_Scorcher.Views.Main">
     <StackLayout>
-        <Label>Scorcher</Label>
+        <Label Style="{StaticResource TitleLabel}" Text="Scorcher"/>
+        <!--<Image Source="ScorcherLogo.png" />-->
         <SearchBar 
-            Placeholder="Search text..." 
+            Placeholder="Enter business name or cuisine type..." 
             SearchButtonPressed="NewSearch"
             CancelButtonColor="Black"
-        >
-        </SearchBar>
-        <ListView x:Name="RestaurantList">
+        />
+        <Grid Padding="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Label 
+                Grid.Column="0" 
+                Text="Image"
+                FontSize="18"
+                HorizontalOptions="Center"
+            />
+            <Label 
+                Grid.Column="1" 
+                Text="Name"
+                FontSize="18"
+                HorizontalOptions="Center"
+            />
+            <Label 
+                Grid.Column="2" 
+                Text="Offset"
+                FontSize="18"
+                HorizontalOptions="Center"
+            />
+        </Grid>
+        <ListView x:Name="RestaurantList" RowHeight="100">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid Padding="10" x:Name="{Binding Id}">
+                        <Grid 
+                            Padding="0" 
+                            x:Name="{Binding Id}">
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer CommandParameter="{Binding Id}" Tapped="NavigateToDishesAsync" NumberOfTapsRequired="1" />
                             </Grid.GestureRecognizers>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="*" />
+                                <RowDefinition Height="5*" />
+                                <RowDefinition Height="15*" />
+                                <RowDefinition Height="5*" />
                             </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="0.5*" />
+                            </Grid.ColumnDefinitions>
                             <Label 
                                 Text="{Binding YelpId}"
                                 x:Name="Id"
                                 IsVisible="false"
-                            />                            
-                            <Label 
-                                Text="{Binding RestaurantOffset}"
-                            />                            
+                            />
                             <Image
-                                Grid.RowSpan="2" 
+                                Grid.Column="0"
+                                Grid.Row="1"
                                 Source="{Binding ImageUrl}"
-                                HeightRequest="60"
-                                WidthRequest="60"
+                                HeightRequest="150"
+                                WidthRequest="150"
+                                VerticalOptions="StartAndExpand"
+                                HorizontalOptions="StartAndExpand"
                             />
                             <Label
                                 Grid.Column="1"
+                                Grid.Row="1"
                                 Text="{Binding Name}"
+                                FontSize="20"
                             />
-                        </Grid>                            
+                            <Label 
+                                Grid.Column="2"
+                                Grid.Row="1"
+                                Text="{Binding RestarauntOffset}"
+                                FontSize="18"
+                            />
+                        </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
     </StackLayout>
-    
 </ContentPage>
-
-
-<!--DisplayPhone	"(206) 787-8444"	string
-		Distance	520.2365	float
-		DistanceAway	0.32	double
-		Hours	(null)	Yelp.Api.Models.Hour[]
-		Id	"bBDeZ3QkljIbPPeQ__Xq-w"	string
-		ImageUrl	"https://s3-media2.fl.yelpcdn.com/bphoto/Muh7UMdqeb59y0V52Vy05Q/o.jpg"	string
-		IsClaimed	false	bool
-		IsClosed	false	bool
-+		Location	{Yelp.Api.Models.Location}	Yelp.Api.Models.Location
-		Name	"Noi Thai Cuisine"	string
-		Phone	"+12067878444"	string
-		Photos	(null)	string[]
-		Price	"$$"	string
-		Rating	4	float
-		ReviewCount	754	int
-		Url-->

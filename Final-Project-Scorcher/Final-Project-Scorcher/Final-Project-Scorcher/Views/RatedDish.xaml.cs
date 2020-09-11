@@ -15,10 +15,10 @@ public partial class RatedDish : ContentPage
 {
         public int Id2 { get; set; }
         public RatedDish(int id)
-    {
-        InitializeComponent();
+        {
+            InitializeComponent();
             Id2 = id;
-    }
+        }
         protected async override void OnAppearing()
         {
             base.OnAppearing();
@@ -34,8 +34,8 @@ public partial class RatedDish : ContentPage
             var num = Convert.ToDecimal(DishRating.Text);
             displayDish.TotalVotes += 1;
             displayDish.TotalLevel += num;
-            displayDish.AvgLevel = displayDish.TotalLevel / displayDish.TotalVotes;
-            displayDish.RestaurantDishOffset = displayDish.Level - displayDish.AvgLevel;
+            displayDish.AvgLevel = Math.Round(displayDish.TotalLevel / displayDish.TotalVotes, 1);
+            displayDish.RestaurantDishOffset = Math.Round(displayDish.Level - displayDish.AvgLevel, 1);
             await App.database.CreateDish(displayDish);
             string yelpId = await App.database.ReturnYelpIdByDish(displayDish.Id);
             await App.database.UpdateRestarauntOffSet(yelpId);
