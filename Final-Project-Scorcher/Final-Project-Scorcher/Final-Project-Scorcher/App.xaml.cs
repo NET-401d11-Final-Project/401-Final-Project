@@ -1,5 +1,4 @@
-﻿using Final_Project_Scorcher.Data;
-using System;
+﻿using System;
 using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -8,6 +7,7 @@ using Final_Project_Scorcher.Data;
 
 namespace Final_Project_Scorcher
 {
+	[XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class App : Application
     {
         public static ScorcherDatabase database;

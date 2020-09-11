@@ -33,7 +33,7 @@
             <Entry x:Name="DishRating"  Keyboard="Numeric" Placeholder="Your Rating Goes Here" />
 
 
-            <Button Text="Add Dish Rating" HorizontalOptions="FillAndExpand" BackgroundColor="#1690F4" TextColor="White" Margin="0,20" Clicked="OnButtonClicked" />
+            <Button Style="{StaticResource buttonStyle}" Text="Add Dish Rating" HorizontalOptions="FillAndExpand" BackgroundColor="#1690F4" TextColor="White" Margin="0,20" Clicked="OnButtonClicked" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
