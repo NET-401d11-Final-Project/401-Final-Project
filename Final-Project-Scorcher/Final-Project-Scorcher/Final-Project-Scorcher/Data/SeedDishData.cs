@@ -13,12 +13,14 @@ namespace Final_Project_Scorcher.Data
             switch (yelpId)
             {
                 case "8sZ27zjv8tYxEmx_0dngrA":
-                   await SeedJaiThaiDishes();
+                    await SeedJaiThaiDishes();
+                    break;
+                case "lVSi-ilqM8FzT_HnK7cQ4A":
+                    await SeedIlTerrazzoCarmineDishes();
                     break;
                 default:
                     break;
             }
-           
         }
 
         public async static Task<List<Dish>> SeedJaiThaiDishes()
@@ -27,41 +29,40 @@ namespace Final_Project_Scorcher.Data
             List<Dish> dishes = new List<Dish>();
             dishes.Add(
             new Dish
-            {
-                Level = 3,
-                Name = "Panang Curry",
-                Description = "Spicy red curry with coconut milk, bamboo shoots, chili and sweet basil.",
-                Cost = 12.95m,
-                RestaurantDishOffset = 0.0m,
-                TotalVotes = 0,
-                AvgLevel = 3
-            }
+                {
+                    Level = 3,
+                    Name = "Panang Curry",
+                    Description = "Spicy red curry with coconut milk, bamboo shoots, chili and sweet basil.",
+                    Cost = 12.95m,
+                    RestaurantDishOffset = 0.0m,
+                    TotalVotes = 0,
+                    AvgLevel = 0
+                }
             );
             dishes.Add(
             new Dish
-            {
-                Level = 4,
-                Name = "Phud Kee Mao",
-                Description = "Fresh wide rice noodles stir fried with chili paste, egg and mixed vegetables.",
-                Cost = 12.95m,
-                RestaurantDishOffset = 0.0m,
-                TotalVotes = 0,
-                AvgLevel = 4
-            }
+                {
+                    Level = 4,
+                    Name = "Phud Kee Mao",
+                    Description = "Fresh wide rice noodles stir fried with chili paste, egg and mixed vegetables.",
+                    Cost = 12.95m,
+                    RestaurantDishOffset = 0.0m,
+                    TotalVotes = 0,
+                    AvgLevel = 0
+                }
             );
             dishes.Add(
             new Dish
-            {
-                Level = 2,
-                Name = "Ba Mee Num",
-                Description = "Egg noodles, green onion, cilantro, bean sprouts, baby bokchoy, toasted garlic in chicken broth or vegetarian broth.",
-                Cost = 10.95m,
-                RestaurantDishOffset = 0.0m,
-                TotalVotes = 0,
-                AvgLevel = 2
-            }
+                {
+                    Level = 2,
+                    Name = "Ba Mee Num",
+                    Description = "Egg noodles, green onion, cilantro, bean sprouts, baby bokchoy, toasted garlic in chicken broth or vegetarian broth.",
+                    Cost = 10.95m,
+                    RestaurantDishOffset = 0.0m,
+                    TotalVotes = 0,
+                    AvgLevel = 0
+                }
             );
-
             foreach (Dish oneDish in dishes)
             {
                 await App.database.CreateDish(oneDish);
@@ -89,9 +90,84 @@ namespace Final_Project_Scorcher.Data
                     DishId = 3
                 }
             );
-            foreach (var dish in restaurantDishes)
+            foreach (RestarauntDish oneRestDish in restaurantDishes)
             {
-                await App.database.CreateRestarauntDish(dish);
+                await App.database.CreateRestarauntDish(oneRestDish);
+            }
+
+            return dishes;
+        }
+
+        public async static Task<List<Dish>> SeedIlTerrazzoCarmineDishes()
+        {
+
+            List<Dish> dishes = new List<Dish>();
+            dishes.Add(
+            new Dish
+            {
+                Level = 2,
+                Name = "Parmigiana Di Melanzane",
+                Description = "Eggplant baked with tomato sauce and mozzarella",
+                Cost = 16.00m,
+                RestaurantDishOffset = 0.0m,
+                TotalVotes = 0,
+                AvgLevel = 0
+            }
+            );
+            dishes.Add(
+            new Dish
+            {
+                Level = 4,
+                Name = "Rigatoni Bolognese",
+                Description = "House ground veal, pork and beef with tomatoes, herbs, and red wine.",
+                Cost = 21.00m,
+                RestaurantDishOffset = 0.0m,
+                TotalVotes = 0,
+                AvgLevel = 4
+            }
+            );
+            dishes.Add(
+            new Dish
+            {
+                Level = 3,
+                Name = "Ossobuco",
+                Description = "Center cut veal shank braised in wine and vegetables, served with fettuccine al burro.",
+                Cost = 10.95m,
+                RestaurantDishOffset = 0.0m,
+                TotalVotes = 0,
+                AvgLevel = 2
+            }
+            );
+            foreach (Dish oneDish in dishes)
+            {
+                await App.database.CreateDish(oneDish);
+            }
+
+            List<RestarauntDish> restaurantDishes = new List<RestarauntDish>();
+            restaurantDishes.Add(
+                new RestarauntDish
+                {
+                    YelpId = "lVSi-ilqM8FzT_HnK7cQ4A",
+                    DishId = 4
+                }
+            );
+            restaurantDishes.Add(
+                new RestarauntDish
+                {
+                    YelpId = "lVSi-ilqM8FzT_HnK7cQ4A",
+                    DishId = 5
+                }
+            );
+            restaurantDishes.Add(
+                new RestarauntDish
+                {
+                    YelpId = "lVSi-ilqM8FzT_HnK7cQ4A",
+                    DishId = 6
+                }
+            );
+            foreach (RestarauntDish oneRestDish in restaurantDishes)
+            {
+                await App.database.CreateRestarauntDish(oneRestDish);
             }
 
             return dishes;
