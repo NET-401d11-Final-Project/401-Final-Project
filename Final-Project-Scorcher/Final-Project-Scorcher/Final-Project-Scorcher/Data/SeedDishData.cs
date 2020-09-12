@@ -8,6 +8,11 @@ namespace Final_Project_Scorcher.Data
 {
     public class SeedDishData
     {
+        /// <summary>
+        /// the following method puts dish data into our Yelp API origin restaurants
+        /// </summary>
+        /// <param name="yelpId">the assigned yelp id each restaurant has</param>
+        /// <returns>seeded data within restaurants (dishes for a user to peruse)</returns>
         public async static Task SeedRestaurantDataFromYelpId(string yelpId)
         {
             switch (yelpId)
@@ -22,7 +27,10 @@ namespace Final_Project_Scorcher.Data
                     break;
             }
         }
-
+        /// <summary>
+        /// the following method seeds dish data into the Jai Thai restaurant
+        /// </summary>
+        /// <returns>dish data when one "taps" on the Jai Thai restaurant</returns>
         public async static Task<List<Dish>> SeedJaiThaiDishes()
         {
 
@@ -97,7 +105,10 @@ namespace Final_Project_Scorcher.Data
 
             return dishes;
         }
-
+        /// <summary>
+        /// the following method seeds dish data into the Il Terrazzo Carmine restaurant
+        /// </summary>
+        /// <returns>dish data when one "taps" on the Italian restaurant</returns>
         public async static Task<List<Dish>> SeedIlTerrazzoCarmineDishes()
         {
 
@@ -123,7 +134,7 @@ namespace Final_Project_Scorcher.Data
                 Cost = 21.00m,
                 RestaurantDishOffset = 0.0m,
                 TotalVotes = 0,
-                AvgLevel = 4
+                AvgLevel = 0
             }
             );
             dishes.Add(
@@ -135,7 +146,7 @@ namespace Final_Project_Scorcher.Data
                 Cost = 10.95m,
                 RestaurantDishOffset = 0.0m,
                 TotalVotes = 0,
-                AvgLevel = 2
+                AvgLevel = 0
             }
             );
             foreach (Dish oneDish in dishes)

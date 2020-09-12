@@ -4,7 +4,11 @@
              x:Class="Final_Project_Scorcher.Views.RatedDish">
     <ContentPage.Content>
         <StackLayout>
-            <Label Style="{StaticResource TitleLabel}" Text="Scorcher"/>
+            <Label Style="{StaticResource TitleLabel}" Text="Scorcher">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="NavigateHome" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                </Label.GestureRecognizers>
+            </Label>
             <Grid Padding="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />

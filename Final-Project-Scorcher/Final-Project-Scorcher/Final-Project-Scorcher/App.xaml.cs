@@ -12,7 +12,9 @@ namespace Final_Project_Scorcher
     {
         public static ScorcherDatabase database;
 
-
+        /// <summary>
+        /// Sets the app's main page and its SQLite database.
+        /// </summary>
         public App()
         {
             InitializeComponent();
